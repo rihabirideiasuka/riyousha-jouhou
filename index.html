@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>利用者情報</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a9a45" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="利用者情報" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <!-- PC用 -->
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+  <link rel="icon" href="./favicon.ico" sizes="any" />
+
+  <!-- iPhone/iPad用 -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+
+  <style>
+    :root{
+      --bg:#f3f7f3;
+      --card:#ffffff;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --accent:#0a9a45;
+      --line:#dbe5dc;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Hiragino Sans","Noto Sans JP",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+    .card{
+      width:min(92vw,420px);
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:24px 20px;
+      box-shadow:0 10px 30px rgba(0,0,0,.06);
+      text-align:center;
+    }
+    .icon{
+      width:72px;
+      height:72px;
+      border-radius:18px;
+      display:block;
+      margin:0 auto 16px;
+    }
+    h1{
+      margin:0 0 8px;
+      font-size:20px;
+      line-height:1.4;
+    }
+    p{
+      margin:0 0 14px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:14px;
+    }
+    .btn{
+      display:inline-block;
+      min-width:220px;
+      padding:14px 18px;
+      border:none;
+      border-radius:14px;
+      background:var(--accent);
+      color:#fff;
+      font-size:16px;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .help{
+      margin-top:14px;
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img class="icon" src="./apple-touch-icon.png" alt="アイコン" />
+    <p id="msg">iPadやiPhoneでは、この画面をSafariで開いたまま「共有」→「ホーム画面に追加」を行ってください。</p>
+    <button class="btn" id="openBtn" type="button">利用者情報を開く</button>
+    <div class="help">
+      ※ ホーム画面に追加するときは、この画面のままで行ってください
+    </div>
+  </div>
+
+  <script>
+    const EXEC_URL = 'https://script.google.com/macros/s/AKfycbyuY25nrFeM1keCFWc9_SQ3Lp4vpE5hSvuMZZcVTrzxHxeu_PntAvQpkvny2BFXkgpz/exec';
+
+    function isStandaloneMode() {
+      return window.navigator.standalone === true ||
+             window.matchMedia('(display-mode: standalone)').matches;
+    }
+
+    function openApp() {
+      const search = window.location.search || '';
+      const hash   = window.location.hash || '';
+      window.location.href = EXEC_URL + search + hash;
+    }
+
+    if (isStandaloneMode()) {
+      document.getElementById('msg').textContent = 'アプリを開いています…';
+      setTimeout(openApp, 150);
+    }
+
+    document.getElementById('openBtn').addEventListener('click', openApp);
+  </script>
+</body>
+</html>
