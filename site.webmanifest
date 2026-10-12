@@ -1,19 +1,24 @@
 {
-  "name": "利用者 情報",
-  "short_name": "情報伝言",
+  "name": "利用者情報変更・確認",
+  "short_name": "利用者情報",
+  "description": "職員が利用者情報の変更内容を確認するためのアプリ",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#1687EF",
   "icons": [
     {
       "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
-  ],
-  "theme_color": "#0a9a45",
-  "background_color": "#0a9a45",
-  "display": "standalone"
+  ]
 }
